@@ -643,9 +643,7 @@ details.advanced > summary::-webkit-details-marker {
     <div class="info-box">
       <b>How Reliability Score is calculated</b><br>
         $$
-        \begin{aligned}
-        RS &= C_1^{x_{rs}} \cdot C_2^{y_{rs}} \cdot C_3^{z_{rs}} \\
-        x_{rs} + y_{rs} + z_{rs} &= 1
+        RS &= C_1^{x_{rs}} \cdot C_2^{y_{rs}} \cdot C_3^{z_{rs}}, \quad \substack{x_{rs} + y_{rs} + z_{rs} &= 1}
         \end{aligned}
         $$
 
@@ -700,7 +698,7 @@ details.advanced > summary::-webkit-details-marker {
       $x_{ps}, y_{ps}, z_{ps}$ are the weights for Temperature, Magnetization, and Coercivity respectively.
     </div>
     $$
-    PP = PS_1^{x_{ps}} \cdot PS_2^{y_{ps}} \cdot PS_3^{z_{ps}}, /quad /substack{x_{ps}+y_{ps}+z_{ps}=1}
+    PP = PS_1^{x_{ps}} \cdot PS_2^{y_{ps}} \cdot PS_3^{z_{ps}}, \quad \substack{x_{ps}+y_{ps}+z_{ps}=1}
     $$
   </div>
 
@@ -4576,7 +4574,7 @@ details.advanced > summary::-webkit-details-marker {
     <div class="info-box">
       <b>How Sustainability Score is calculated</b><br>
       $$
-      SS = \prod_{k=1}^{10} S_k^{w_k}, /quad /substack{\sum_{k=1}^{10} w_k = 1}
+      SS = \prod_{k=1}^{10} S_k^{w_k}, \quad \substack{\sum_{k=1}^{10} w_k = 1}
       $$
       <div class="muted">
         $S_1$: Sustainability factor calculation
@@ -8579,7 +8577,7 @@ details.advanced > summary::-webkit-details-marker {
     <div class="info-box">
       <b>How Overall Score is calculated</b><br>
       $$
-      OS = RS^{x_{os}} \cdot PS^{y_{os}} \cdot SS^{z_{os}}, /quad /substack{x_{os}+y_{os}+z_{os}=1}
+      OS = RS^{x_{os}} \cdot PS^{y_{os}} \cdot SS^{z_{os}}, \quad \substack{x_{os}+y_{os}+z_{os}=1}
       $$
       <div class="muted">
         $RS$: Reliability Score
