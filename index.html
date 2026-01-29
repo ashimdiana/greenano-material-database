@@ -585,14 +585,15 @@ details.advanced > summary::-webkit-details-marker {
 
 .collapse {
   max-height: 0;
+  overflow: hidden;
   opacity: 0;
   transform: translateY(-4px);
-  transition: max-height 280ms ease, opacity 200ms ease, transform 200ms ease;
+  transition: opacity 200ms ease, transform 200ms ease;
   will-change: max-height, opacity, transform;
 }
 
 .collapse.open {
-  max-height: 1200px; /* big enough */
+  max-height: none; /* big enough */
   opacity: 1;
   transform: translateY(0);
 }
