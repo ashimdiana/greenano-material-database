@@ -15,7 +15,10 @@
 <!-- MathJax for LaTeX-style formulas -->
 <script>
   window.MathJax = {
-    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']],
+           packages: {'[+]': ['ams']},
+           displayMath: [['$$', '$$'], ['\\[', '\\]']] 
+         },
     svg: { fontCache: 'global' }
   };
 </script>
@@ -642,11 +645,12 @@ details.advanced > summary::-webkit-details-marker {
 
     <div class="info-box">
       <b>How Reliability Score is calculated</b><br>
+          $$
+        \begin{aligned}
+        RS &= C_1^{x_{rs}} \cdot C_2^{y_{rs}} \cdot C_3^{z_{rs}} \\
+        x_{rs} + y_{rs} + z_{rs} &= 1
+        \end{aligned}
         $$
-        RS &= C_1^{x_{rs}} \cdot C_2^{y_{rs}} \cdot C_3^{z_{rs}}, \quad \substack{x_{rs} + y_{rs} + z_{rs} &= 1}
-        
-        $$
-
 
       <div class="muted">
         $C_1, C_2, C_3$ are the reliability coefficients for Temperature, Magnetization, and Coercivity respectively.
@@ -697,9 +701,14 @@ details.advanced > summary::-webkit-details-marker {
       <br>
       $x_{ps}, y_{ps}, z_{ps}$ are the weights for Temperature, Magnetization, and Coercivity respectively.
     </div>
-    $$
-    PP = PS_1^{x_{ps}} \cdot PS_2^{y_{ps}} \cdot PS_3^{z_{ps}}, \quad \substack{x_{ps}+y_{ps}+z_{ps}=1}
-    $$
+      $$
+      PS =
+      \begin{cases}
+      PS_1^{x_{ps}} \cdot PS_2^{y_{ps}} \cdot PS_3^{z_{ps}} \\
+      x_{ps} + y_{ps} + z_{ps} = 1
+      \end{cases}
+      $$
+
   </div>
 
   <div class="perf-layout">
@@ -8576,9 +8585,13 @@ details.advanced > summary::-webkit-details-marker {
 
     <div class="info-box">
       <b>How Overall Score is calculated</b><br>
-      $$
-      OS = RS^{x_{os}} \cdot PS^{y_{os}} \cdot SS^{z_{os}}, \quad \substack{ x_{os}+y_{os}+z_{os}=1 }
-      $$
+        $$
+        \begin{aligned}
+        OS &= RS^{x_{os}} \cdot PS^{y_{os}} \cdot SS^{z_{os}} \\
+        x_{os} + y_{os} + z_{os} &= 1
+        \end{aligned}
+        $$
+
       <div class="muted">
         $RS$: Reliability Score
         </br>
