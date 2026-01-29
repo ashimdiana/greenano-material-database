@@ -645,12 +645,15 @@ details.advanced > summary::-webkit-details-marker {
 
     <div class="info-box">
       <b>How Reliability Score is calculated</b><br>
-          $$
-        \begin{aligned}
-        RS &= C_1^{x_{rs}} \cdot C_2^{y_{rs}} \cdot C_3^{z_{rs}} \\
-        x_{rs} + y_{rs} + z_{rs} &= 1
-        \end{aligned}
+        <div class="math-block">
         $$
+        \begin{alignedat}{2}
+        RS &=\; C_1^{x_{rs}} \cdot C_2^{y_{rs}} \cdot C_3^{z_{rs}} \\
+            &\; x_{rs} + y_{rs} + z_{rs} = 1
+        \end{alignedat}
+        $$
+        </div>
+
 
       <div class="muted">
         $C_1, C_2, C_3$ are the reliability coefficients for Temperature, Magnetization, and Coercivity respectively.
