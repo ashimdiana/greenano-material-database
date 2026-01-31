@@ -18398,9 +18398,9 @@ document.getElementById("autoFillThresholdsBtn").addEventListener("click", funct
 function autofillThresholdsFromPython() {
   if (!checkSFInputs()) return;
 
-  const initT = [565.0, 630.0, 748.0];
-  const initM = [0.95, 1.33];
-  const initC = [0.75, 1.11, 1.59, 4.7];
+  const initT = [565.0, 630.0, 748.0, 850.0];
+  const initM = [0.70, 0.95, 1.33, 1.70];
+  const initC = [0.75, 1.11, 1.59, 4.70];
 
   const sfT = validateSF(document.getElementById("sf_t").value, document.getElementById("sf_t"));
   const sfM = validateSF(document.getElementById("sf_m").value, document.getElementById("sf_m"));
