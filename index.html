@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" href="logo.ico">
+<link rel="icon" type="image/png" href="logo.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,7 +14,10 @@
 
 <script>
   window.MathJax = {
-    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+     tex: { inlineMath: [['$', '$'], ['\\(', '\\)']],
+           packages: {'[+]': ['ams']},
+           displayMath: [['$$', '$$'], ['\\[', '\\]']] 
+         },
     svg: { fontCache: 'global' }
   };
 </script>
@@ -625,21 +628,41 @@ details.advanced > summary::-webkit-details-marker {
 <br>
 
 <div class="tab-nav">
-    <button class="tab-button active" onclick="openTab(event, 'reliabilityTab')">Reliability</button>
+    <button class="tab-button active" onclick="openTab(event, 'mapTab')">Map</button>
+    <button class="tab-button" onclick="openTab(event, 'reliabilityTab')">Reliability</button>
     <button class="tab-button" onclick="openTab(event, 'performanceTab')">Performance</button>
     <button class="tab-button" onclick="openTab(event, 'sustainabilityTab')">Sustainability</button>
     <button class="tab-button" onclick="openTab(event, 'overallTab')">Overall</button>
     <button class="tab-button" onclick="openTab(event, 'prevalenceTab')">Prevalence & Forecast</button>
 </div>
-
+<div id="mapTab" class="tab-content card">
+  <h2>Interactive Map</h2>
+  <div style="width: 100%; margin: 40px auto; text-align: center;">
+    <iframe 
+        src="https://greenano-map.onrender.com" 
+        width="100%" 
+        height="850" 
+        style="border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;"
+        title="Mappa Interattiva Greenano">
+    </iframe>
+    <p style="font-size: 12px; color: #777; margin-top: 10px;">
+       Note: server might take some time to load at first
+    </p>
+</div>
+</div>div>
 <div id="reliabilityTab" class="tab-content card">
     <h2>Reliability Score</h2>
 
     <div class="info-box">
       <b>How Reliability Score is calculated</b><br>
-      $$
-      RS = C_1^{x_{rs}} \cdot C_2^{y_{rs}} \cdot C_3^{z_{rs}}, \quad x_{rs}+y_{rs}+z_{rs}=1
-      $$
+      <div class="math-block">
+        $$
+        \begin{alignedat}{2}
+        RS &=\; C_1^{x_{rs}} \cdot C_2^{y_{rs}} \cdot C_3^{z_{rs}} \\
+            &\; x_{rs} + y_{rs} + z_{rs} = 1
+        \end{alignedat}
+        $$
+        </div>
       <div class="muted">
         $C_1, C_2, C_3$ are the reliability coefficients for Temperature, Magnetization, and Coercivity respectively.
         </br>
@@ -686,9 +709,14 @@ details.advanced > summary::-webkit-details-marker {
       <br>
       $x_{ps}, y_{ps}, z_{ps}$ are the weights for Temperature, Magnetization, and Coercivity respectively.
     </div>
-    $$
-    PP = PS_1^{x_{ps}} \cdot PS_2^{y_{ps}} \cdot PS_3^{z_{ps}}, \quad x_{ps}+y_{ps}+z_{ps}=1
-    $$
+    <div class="math-block">
+      $$
+      \begin{alignedat}{2}
+      PS &=\; PS_1^{x_{ps}} \cdot PS_2^{y_{ps}} \cdot PS_3^{z_{ps}} \\
+         &\; x_{ps} + y_{ps} + z_{ps} = 1
+      \end{alignedat}
+      $$
+    </div>
   </div>
 
   <div class="perf-layout">
@@ -4558,7 +4586,7 @@ details.advanced > summary::-webkit-details-marker {
     <div class="info-box">
       <b>How Sustainability Score is calculated</b><br>
       $$
-      SS = \prod_{k=1}^{10} S_k^{w_k}, \quad \sum_{k=1}^{10} w_k = 1
+      SS = \prod_{k=1}^{10} S_k^{w_k}, \quad \substack {\sum_{k=1}^{10} w_k = 1}
       $$
       <div class="muted">
         $S_1$: Sustainability factor calculation
@@ -11729,9 +11757,14 @@ details.advanced > summary::-webkit-details-marker {
 
     <div class="info-box">
       <b>How Overall Score is calculated</b><br>
-      $$
-      OS = RS^{x_{os}} \cdot PS^{y_{os}} \cdot SS^{z_{os}}, \quad x_{os}+y_{os}+z_{os}=1
-      $$
+     <div class="math-block">
+          $$
+          \begin{alignedat}{2}
+          OS &=\; RS^{x_{os}} \cdot PS^{y_{os}} \cdot SS^{z_{os}} \\
+             &\; x_{os} + y_{os} + z_{os} = 1
+          \end{alignedat}
+          $$
+       </div>
       <div class="muted">
         $RS$: Reliability Score
         </br>
@@ -18314,8 +18347,8 @@ function setThresholdInputs(containerId, values) {
 
 document.getElementById("autoFillThresholdsBtn").addEventListener("click", function() {
   // these 3 arrays are already injected by your .format(...) as JSON lists
-  const initT = [565.0, 630.0, 748.0];
-  const initM = [0.95, 1.33];
+  const initT = [565.0, 630.0, 748.0, 950.0];
+  const initM = [0.70, 0.95, 1.33, 1.50];
   const initC = [0.75, 1.11, 1.59, 4.7];
 
   // ensure SF inputs are valid -> render correct number of boxes first
@@ -19310,14 +19343,14 @@ renderKTable();
 </script>
 
 <div class="hero">
-    <p>
-       Data used in this website were obtained from the following databases:
-       </br>
-       Magnetic Anisotropy Materials Database from NEMAD:  https://doi.org/10.38/s41467-025-64458-z
-       </br>
-       Sustainability Database from Alexandre Nominé
-      </br>
-
+     <p style="font-size:12px; color:#64748b;">
+  Data used in this website were obtained from the following databases:<br>
+    Magnetic Anisotropy Materials Database from NEMAD: <br>
+    <a href="https://doi.org/10.38/s41467-025-64458-z" target="_blank" rel="noopener">
+      https://doi.org/10.38/s41467-025-64458-z
+    </a><br>
+    Sustainability Database from Alexandre Nominé
+    <br>
     </p>
 </div>
 
